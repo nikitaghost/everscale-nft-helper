@@ -13,6 +13,18 @@
 			]
 		},
 		{
+			"name": "resolveIndex",
+			"inputs": [
+				{"name":"answerId","type":"uint32"},
+				{"name":"collection","type":"address"},
+				{"name":"owner","type":"address"},
+				{"name":"nft","type":"address"}
+			],
+			"outputs": [
+				{"name":"index","type":"address"}
+			]
+		},
+		{
 			"name": "indexCode",
 			"inputs": [
 				{"name":"answerId","type":"uint32"},

@@ -12,18 +12,168 @@ THROWIF 51
 LDREF
 LDREF
 ENDS
-.loc ../contracts/NFTIndexHelper.sol, 16
-ACCEPT
 .loc ../contracts/NFTIndexHelper.sol, 18
+ACCEPT
+.loc ../contracts/NFTIndexHelper.sol, 20
 SWAP
 SETGLOB 10
-.loc ../contracts/NFTIndexHelper.sol, 19
+.loc ../contracts/NFTIndexHelper.sol, 21
 SETGLOB 11
 .loc ../contracts/NFTIndexHelper.sol, 0
 CALLREF {
 	CALL $c7_to_c4$
 }
 THROW 0
+
+.macro resolveIndex
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/NFTIndexHelper.sol, 24
+LDU 32
+GETGLOB 4
+ROT
+SETINDEXQ 5
+SETGLOB 4
+OVER
+PUSHCONT {
+	LDREF
+	ENDS
+	CTOS
+}
+IF
+LDMSGADDR
+LDREF
+ENDS
+CTOS
+LDMSGADDR
+LDREF
+ENDS
+CTOS
+LDMSGADDR
+ENDS
+.loc ../contracts/NFTIndexHelper.sol, 0
+CALLREF {
+	CALL $resolveIndex_internal_macro$
+}
+OVER
+PUSHCONT {
+	PUSH S3
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 1
+	STUR 98
+	SWAP
+	NEWC
+	STSLICECONST x8b07762c
+	STSLICE
+	STBREFR
+	ENDC
+	PUSHINT 0
+}
+PUSHCONT {
+	GETGLOB 4
+	DUP
+	INDEX 3
+	OVER
+	THIRD
+	GETGLOB 9
+	ROLL 3
+	SECOND
+	NEWC
+	STSLICECONST x2_
+	STI 1
+	STSLICECONST x1_
+	STSLICE
+	SWAP
+	STGRAMS
+	STDICT
+	PUSHINT 1
+	STUR 106
+	SWAP
+	NEWC
+	GETGLOB 4
+	INDEX 5
+	STUR 32
+	STSLICE
+	STBREFR
+	ENDC
+	GETGLOB 4
+	INDEX 4
+}
+IFELSE
+SENDRAWMSG
+IFREF {
+	CALL $upd_only_time_in_c4$
+}
+THROW 0
+
+.globl	resolveIndex_internal
+.type	resolveIndex_internal, @function
+CALL $resolveIndex_internal_macro$
+
+.macro resolveIndex_internal_macro
+.loc ../contracts/NFTIndexHelper.sol, 29
+ROTREV
+CALLREF {
+	CALL $indexCode_internal_macro$
+}
+.loc ../contracts/NFTIndexHelper.sol, 30
+PUSHINT 0
+NEWC
+STU 256
+PUSHINT 0
+NEWDICT
+PUSHINT 64
+DICTUSETB
+ROT
+PUSHINT 1
+ROT
+PUSHINT 64
+DICTUSET
+NEWC
+STDICT
+ENDC
+SWAP
+NEWC
+STSLICECONST x2_
+STOPTREF
+STOPTREF
+STZERO
+ENDC
+.loc ../contracts/NFTIndexHelper.sol, 36
+HASHCU
+.loc ../contracts/NFTIndexHelper.sol, 37
+MYADDR
+PARSEMSGADDR
+THIRD
+NEWC
+STSLICECONST x9_
+STI 8
+STU 256
+ENDC
+CTOS
+.loc ../contracts/NFTIndexHelper.sol, 38
+GETGLOB 4
+PUSHINT 0
+SETINDEXQ 2
+PUSHINT 64
+SETINDEXQ 4
+FALSE
+SETINDEXQ 1
+SETGLOB 4
+.loc ../contracts/NFTIndexHelper.sol, 0
 
 .macro indexCode
 DROP
@@ -34,7 +184,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/NFTIndexHelper.sol, 22
+.loc ../contracts/NFTIndexHelper.sol, 41
 LDU 32
 GETGLOB 4
 ROT
@@ -113,18 +263,18 @@ THROW 0
 CALL $indexCode_internal_macro$
 
 .macro indexCode_internal_macro
-.loc ../contracts/NFTIndexHelper.sol, 27
+.loc ../contracts/NFTIndexHelper.sol, 46
 PUSHREF {
 	.blob x6e6674
 }
 NEWC
 STREF
-.loc ../contracts/NFTIndexHelper.sol, 28
+.loc ../contracts/NFTIndexHelper.sol, 47
 XCHG S1, S2
 STSLICE
-.loc ../contracts/NFTIndexHelper.sol, 29
+.loc ../contracts/NFTIndexHelper.sol, 48
 STSLICE
-.loc ../contracts/NFTIndexHelper.sol, 30
+.loc ../contracts/NFTIndexHelper.sol, 49
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -253,7 +403,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/NFTIndexHelper.sol, 33
+.loc ../contracts/NFTIndexHelper.sol, 52
 LDU 32
 GETGLOB 4
 ROT
@@ -320,7 +470,7 @@ THROW 0
 CALL $indexCodeWithoutSalt_internal_macro$
 
 .macro indexCodeWithoutSalt_internal_macro
-.loc ../contracts/NFTIndexHelper.sol, 34
+.loc ../contracts/NFTIndexHelper.sol, 53
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -341,7 +491,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/NFTIndexHelper.sol, 37
+.loc ../contracts/NFTIndexHelper.sol, 56
 LDU 32
 GETGLOB 4
 ROT
@@ -423,18 +573,18 @@ THROW 0
 CALL $indexCodeHash_internal_macro$
 
 .macro indexCodeHash_internal_macro
-.loc ../contracts/NFTIndexHelper.sol, 42
+.loc ../contracts/NFTIndexHelper.sol, 61
 PUSHREF {
 	.blob x6e6674
 }
 NEWC
 STREF
-.loc ../contracts/NFTIndexHelper.sol, 43
+.loc ../contracts/NFTIndexHelper.sol, 62
 XCHG S1, S2
 STSLICE
-.loc ../contracts/NFTIndexHelper.sol, 44
+.loc ../contracts/NFTIndexHelper.sol, 63
 STSLICE
-.loc ../contracts/NFTIndexHelper.sol, 45
+.loc ../contracts/NFTIndexHelper.sol, 64
 GETGLOB 10
 CTOS
 SWAP
@@ -544,7 +694,7 @@ CALLREF {
 	}
 	IFELSE
 }
-.loc ../contracts/NFTIndexHelper.sol, 46
+.loc ../contracts/NFTIndexHelper.sol, 65
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -565,7 +715,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/NFTIndexHelper.sol, 49
+.loc ../contracts/NFTIndexHelper.sol, 68
 LDU 32
 GETGLOB 4
 ROT
@@ -635,7 +785,7 @@ THROW 0
 CALL $indexCodeHashWithoutSalt_internal_macro$
 
 .macro indexCodeHashWithoutSalt_internal_macro
-.loc ../contracts/NFTIndexHelper.sol, 50
+.loc ../contracts/NFTIndexHelper.sol, 69
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -657,7 +807,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/NFTIndexHelper.sol, 53
+.loc ../contracts/NFTIndexHelper.sol, 72
 LDU 32
 GETGLOB 4
 ROT
@@ -727,13 +877,13 @@ THROW 0
 CALL $indexBasisCodeHash_internal_macro$
 
 .macro indexBasisCodeHash_internal_macro
-.loc ../contracts/NFTIndexHelper.sol, 56
+.loc ../contracts/NFTIndexHelper.sol, 75
 PUSHREF {
 	.blob x6e6674
 }
 NEWC
 STREF
-.loc ../contracts/NFTIndexHelper.sol, 57
+.loc ../contracts/NFTIndexHelper.sol, 76
 GETGLOB 11
 CTOS
 SWAP
@@ -843,7 +993,7 @@ CALLREF {
 	}
 	IFELSE
 }
-.loc ../contracts/NFTIndexHelper.sol, 58
+.loc ../contracts/NFTIndexHelper.sol, 77
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -864,7 +1014,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/NFTIndexHelper.sol, 61
+.loc ../contracts/NFTIndexHelper.sol, 80
 LDU 32
 GETGLOB 4
 ROT
@@ -934,7 +1084,7 @@ THROW 0
 CALL $indexBasisCodeHashWithoutSalt_internal_macro$
 
 .macro indexBasisCodeHashWithoutSalt_internal_macro
-.loc ../contracts/NFTIndexHelper.sol, 62
+.loc ../contracts/NFTIndexHelper.sol, 81
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -1120,9 +1270,15 @@ THROW 60
 
 .macro public_function_selector
 DUP
-PUSHINT 1095173903
+PUSHINT 880007004
 LEQ
 IFJMPREF {
+	DUP
+	PUSHINT 185038380
+	EQUAL
+	IFJMPREF {
+		CALL $resolveIndex$
+	}
 	DUP
 	PUSHINT 373998625
 	EQUAL
@@ -1141,17 +1297,17 @@ IFJMPREF {
 	IFJMPREF {
 		CALL $indexBasisCodeHash$
 	}
+}
+DUP
+PUSHINT 2076800919
+LEQ
+IFJMPREF {
 	DUP
 	PUSHINT 1095173903
 	EQUAL
 	IFJMPREF {
 		CALL $indexBasisCodeHashWithoutSalt$
 	}
-}
-DUP
-PUSHINT 2076800919
-LEQ
-IFJMPREF {
 	DUP
 	PUSHINT 1244549078
 	EQUAL
